@@ -1,8 +1,8 @@
-package com.stream.data.to.kafka.runner.impl;
+package com.microservices.demo.stream.data.to.kafka.runner.impl;
 
-import com.stream.data.to.kafka.config.StreamDataToKafkaConfig;
-import com.stream.data.to.kafka.listener.StreamDataStatusListener;
-import com.stream.data.to.kafka.runner.StreamRunner;
+import com.microservices.demo.config.StreamDataToKafkaConfig;
+import com.microservices.demo.stream.data.to.kafka.listener.StreamDataStatusListener;
+import com.microservices.demo.stream.data.to.kafka.runner.StreamRunner;
 import javax.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

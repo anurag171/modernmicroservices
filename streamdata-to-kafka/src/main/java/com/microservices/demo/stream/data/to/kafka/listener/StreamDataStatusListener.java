@@ -1,4 +1,4 @@
-package com.stream.data.to.kafka.listener;
+package com.microservices.demo.stream.data.to.kafka.listener;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

@@ -1,17 +1,19 @@
-package com.stream.data.to.kafka;
+package com.microservices.demo.stream.data.to.kafka;
 
-import com.stream.data.to.kafka.config.StreamDataToKafkaConfig;
-import com.stream.data.to.kafka.runner.StreamRunner;
+import com.microservices.demo.config.StreamDataToKafkaConfig;
+import com.microservices.demo.stream.data.to.kafka.runner.StreamRunner;
 import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @Slf4j
 @RequiredArgsConstructor
+@ComponentScan(basePackages = "com.microservices.demo")
 public class StreamDataToKafkaApplication implements CommandLineRunner {
 
   private final StreamDataToKafkaConfig streamDataToKafkaConfig;

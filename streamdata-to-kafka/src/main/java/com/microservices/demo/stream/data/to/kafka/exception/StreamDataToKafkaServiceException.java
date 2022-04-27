@@ -1,4 +1,4 @@
-package com.stream.data.to.kafka.exception;
+package com.microservices.demo.stream.data.to.kafka.exception;
 
 public class StreamDataToKafkaServiceException extends RuntimeException {
 

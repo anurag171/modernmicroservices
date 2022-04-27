@@ -1,4 +1,4 @@
-package com.stream.data.to.kafka;
+package com.microservices.demo.stream.data.to.kafka;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

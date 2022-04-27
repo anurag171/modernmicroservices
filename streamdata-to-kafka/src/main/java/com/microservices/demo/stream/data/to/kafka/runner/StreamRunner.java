@@ -1,4 +1,4 @@
-package com.stream.data.to.kafka.runner;
+package com.microservices.demo.stream.data.to.kafka.runner;
 
 import twitter4j.TwitterException;
 
