@@ -4,4 +4,10 @@ stream-data-to-kafka-service:
     - Microservices
     - Kafka
     - Elasticsearch
+    - Big data
+    - python
   welcome-message: Hello microservices!
+  enable-mock-tweets: false
+  mock-min-tweet-length: 5
+  mock-max-tweet-length: 15
+  mock-sleep-ms: 10000

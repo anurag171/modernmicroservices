@@ -1,6 +1,7 @@
 package com.stream.data.to.kafka;
 
 import com.stream.data.to.kafka.config.StreamDataToKafkaConfig;
+import com.stream.data.to.kafka.runner.StreamRunner;
 import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StreamDataToKafkaApplication implements CommandLineRunner {
 
   private final StreamDataToKafkaConfig streamDataToKafkaConfig;
+  private final StreamRunner statusRunner;
 
   public static void main(String[] args) {
     SpringApplication.run(StreamDataToKafkaApplication.class,args);
@@ -25,5 +27,6 @@ public class StreamDataToKafkaApplication implements CommandLineRunner {
     log.info("App started");
     log.info(Arrays.toString(streamDataToKafkaConfig.getTwitterKeywords().toArray(new String[]{})));
     log.info(streamDataToKafkaConfig.getWelcomeMessage());
+    statusRunner.start();
   }
 }
