@@ -22,7 +22,7 @@ import twitter4j.TwitterObjectFactory;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "twitter-to-kafka-service.enable-mock-tweets", havingValue = "true")
+@ConditionalOnProperty(name = "stream-data-to-kafka-service.enable-mock-tweets", havingValue = "true")
 public class MockKafkaStreamRunner implements StreamRunner {
 
     private final StreamDataToKafkaConfig streamDataToKafkaConfig;
