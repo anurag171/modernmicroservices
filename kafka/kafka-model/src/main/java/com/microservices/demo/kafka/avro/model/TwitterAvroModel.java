@@ -5,9 +5,8 @@
  */
 package com.microservices.demo.kafka.avro.model;
 
-import org.apache.avro.generic.GenericArray;
+
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
@@ -15,12 +14,10 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -5190598237215532904L;
-
-
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"TwitterAvroModel\",\"namespace\":\"com.microservices.demo.kafka.avro.model\",\"fields\":[{\"name\":\"userId\",\"type\":\"long\"},{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"text\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"createdAt\",\"type\":[\"null\",\"long\"],\"logicalType\":[\"null\",\"date\"]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
-  private static final SpecificData MODEL$ = new SpecificData();
+  private static SpecificData MODEL$ = new SpecificData();
 
   private static final BinaryMessageEncoder<TwitterAvroModel> ENCODER =
       new BinaryMessageEncoder<TwitterAvroModel>(MODEL$, SCHEMA$);
@@ -104,11 +101,11 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return userId;
-    case 1: return id;
-    case 2: return text;
-    case 3: return createdAt;
-    default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
+      case 0: return userId;
+      case 1: return id;
+      case 2: return text;
+      case 3: return createdAt;
+      default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 
@@ -116,11 +113,11 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: userId = (java.lang.Long)value$; break;
-    case 1: id = (java.lang.Long)value$; break;
-    case 2: text = value$ != null ? value$.toString() : null; break;
-    case 3: createdAt = (java.lang.Long)value$; break;
-    default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
+      case 0: userId = (java.lang.Long)value$; break;
+      case 1: id = (java.lang.Long)value$; break;
+      case 2: text = value$ != null ? value$.toString() : null; break;
+      case 3: createdAt = (java.lang.Long)value$; break;
+      default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
 
@@ -231,7 +228,7 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
    */
   @org.apache.avro.specific.AvroGenerated
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<TwitterAvroModel>
-    implements org.apache.avro.data.RecordBuilder<TwitterAvroModel> {
+      implements org.apache.avro.data.RecordBuilder<TwitterAvroModel> {
 
     private long userId;
     private long id;
@@ -240,7 +237,7 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
 
     /** Creates a new Builder */
     private Builder() {
-      super(SCHEMA$, MODEL$);
+      super(SCHEMA$);
     }
 
     /**
@@ -272,7 +269,7 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
      * @param other The existing instance to copy.
      */
     private Builder(com.microservices.demo.kafka.avro.model.TwitterAvroModel other) {
-      super(SCHEMA$, MODEL$);
+      super(SCHEMA$);
       if (isValidValue(fields()[0], other.userId)) {
         this.userId = data().deepCopy(fields()[0].schema(), other.userId);
         fieldSetFlags()[0] = true;
@@ -292,19 +289,19 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
     }
 
     /**
-      * Gets the value of the 'userId' field.
-      * @return The value.
-      */
+     * Gets the value of the 'userId' field.
+     * @return The value.
+     */
     public long getUserId() {
       return userId;
     }
 
 
     /**
-      * Sets the value of the 'userId' field.
-      * @param value The value of 'userId'.
-      * @return This builder.
-      */
+     * Sets the value of the 'userId' field.
+     * @param value The value of 'userId'.
+     * @return This builder.
+     */
     public com.microservices.demo.kafka.avro.model.TwitterAvroModel.Builder setUserId(long value) {
       validate(fields()[0], value);
       this.userId = value;
@@ -313,37 +310,37 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
     }
 
     /**
-      * Checks whether the 'userId' field has been set.
-      * @return True if the 'userId' field has been set, false otherwise.
-      */
+     * Checks whether the 'userId' field has been set.
+     * @return True if the 'userId' field has been set, false otherwise.
+     */
     public boolean hasUserId() {
       return fieldSetFlags()[0];
     }
 
 
     /**
-      * Clears the value of the 'userId' field.
-      * @return This builder.
-      */
+     * Clears the value of the 'userId' field.
+     * @return This builder.
+     */
     public com.microservices.demo.kafka.avro.model.TwitterAvroModel.Builder clearUserId() {
       fieldSetFlags()[0] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'id' field.
-      * @return The value.
-      */
+     * Gets the value of the 'id' field.
+     * @return The value.
+     */
     public long getId() {
       return id;
     }
 
 
     /**
-      * Sets the value of the 'id' field.
-      * @param value The value of 'id'.
-      * @return This builder.
-      */
+     * Sets the value of the 'id' field.
+     * @param value The value of 'id'.
+     * @return This builder.
+     */
     public com.microservices.demo.kafka.avro.model.TwitterAvroModel.Builder setId(long value) {
       validate(fields()[1], value);
       this.id = value;
@@ -352,37 +349,37 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
     }
 
     /**
-      * Checks whether the 'id' field has been set.
-      * @return True if the 'id' field has been set, false otherwise.
-      */
+     * Checks whether the 'id' field has been set.
+     * @return True if the 'id' field has been set, false otherwise.
+     */
     public boolean hasId() {
       return fieldSetFlags()[1];
     }
 
 
     /**
-      * Clears the value of the 'id' field.
-      * @return This builder.
-      */
+     * Clears the value of the 'id' field.
+     * @return This builder.
+     */
     public com.microservices.demo.kafka.avro.model.TwitterAvroModel.Builder clearId() {
       fieldSetFlags()[1] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'text' field.
-      * @return The value.
-      */
+     * Gets the value of the 'text' field.
+     * @return The value.
+     */
     public java.lang.String getText() {
       return text;
     }
 
 
     /**
-      * Sets the value of the 'text' field.
-      * @param value The value of 'text'.
-      * @return This builder.
-      */
+     * Sets the value of the 'text' field.
+     * @param value The value of 'text'.
+     * @return This builder.
+     */
     public com.microservices.demo.kafka.avro.model.TwitterAvroModel.Builder setText(java.lang.String value) {
       validate(fields()[2], value);
       this.text = value;
@@ -391,18 +388,18 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
     }
 
     /**
-      * Checks whether the 'text' field has been set.
-      * @return True if the 'text' field has been set, false otherwise.
-      */
+     * Checks whether the 'text' field has been set.
+     * @return True if the 'text' field has been set, false otherwise.
+     */
     public boolean hasText() {
       return fieldSetFlags()[2];
     }
 
 
     /**
-      * Clears the value of the 'text' field.
-      * @return This builder.
-      */
+     * Clears the value of the 'text' field.
+     * @return This builder.
+     */
     public com.microservices.demo.kafka.avro.model.TwitterAvroModel.Builder clearText() {
       text = null;
       fieldSetFlags()[2] = false;
@@ -410,19 +407,19 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
     }
 
     /**
-      * Gets the value of the 'createdAt' field.
-      * @return The value.
-      */
+     * Gets the value of the 'createdAt' field.
+     * @return The value.
+     */
     public java.lang.Long getCreatedAt() {
       return createdAt;
     }
 
 
     /**
-      * Sets the value of the 'createdAt' field.
-      * @param value The value of 'createdAt'.
-      * @return This builder.
-      */
+     * Sets the value of the 'createdAt' field.
+     * @param value The value of 'createdAt'.
+     * @return This builder.
+     */
     public com.microservices.demo.kafka.avro.model.TwitterAvroModel.Builder setCreatedAt(java.lang.Long value) {
       validate(fields()[3], value);
       this.createdAt = value;
@@ -431,18 +428,18 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
     }
 
     /**
-      * Checks whether the 'createdAt' field has been set.
-      * @return True if the 'createdAt' field has been set, false otherwise.
-      */
+     * Checks whether the 'createdAt' field has been set.
+     * @return True if the 'createdAt' field has been set, false otherwise.
+     */
     public boolean hasCreatedAt() {
       return fieldSetFlags()[3];
     }
 
 
     /**
-      * Clears the value of the 'createdAt' field.
-      * @return This builder.
-      */
+     * Clears the value of the 'createdAt' field.
+     * @return This builder.
+     */
     public com.microservices.demo.kafka.avro.model.TwitterAvroModel.Builder clearCreatedAt() {
       createdAt = null;
       fieldSetFlags()[3] = false;
@@ -469,26 +466,26 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
 
   @SuppressWarnings("unchecked")
   private static final org.apache.avro.io.DatumWriter<TwitterAvroModel>
-    WRITER$ = (org.apache.avro.io.DatumWriter<TwitterAvroModel>)MODEL$.createDatumWriter(SCHEMA$);
+      WRITER$ = (org.apache.avro.io.DatumWriter<TwitterAvroModel>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
-    throws java.io.IOException {
+      throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
   @SuppressWarnings("unchecked")
   private static final org.apache.avro.io.DatumReader<TwitterAvroModel>
-    READER$ = (org.apache.avro.io.DatumReader<TwitterAvroModel>)MODEL$.createDatumReader(SCHEMA$);
+      READER$ = (org.apache.avro.io.DatumReader<TwitterAvroModel>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
-    throws java.io.IOException {
+      throws java.io.IOException {
     READER$.read(this, SpecificData.getDecoder(in));
   }
 
   @Override protected boolean hasCustomCoders() { return true; }
 
   @Override public void customEncode(org.apache.avro.io.Encoder out)
-    throws java.io.IOException
+      throws java.io.IOException
   {
     out.writeLong(this.userId);
 
@@ -513,7 +510,7 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
-    throws java.io.IOException
+      throws java.io.IOException
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
@@ -538,34 +535,34 @@ public class TwitterAvroModel extends org.apache.avro.specific.SpecificRecordBas
     } else {
       for (int i = 0; i < 4; i++) {
         switch (fieldOrder[i].pos()) {
-        case 0:
-          this.userId = in.readLong();
-          break;
+          case 0:
+            this.userId = in.readLong();
+            break;
 
-        case 1:
-          this.id = in.readLong();
-          break;
+          case 1:
+            this.id = in.readLong();
+            break;
 
-        case 2:
-          if (in.readIndex() != 1) {
-            in.readNull();
-            this.text = null;
-          } else {
-            this.text = in.readString();
-          }
-          break;
+          case 2:
+            if (in.readIndex() != 1) {
+              in.readNull();
+              this.text = null;
+            } else {
+              this.text = in.readString();
+            }
+            break;
 
-        case 3:
-          if (in.readIndex() != 1) {
-            in.readNull();
-            this.createdAt = null;
-          } else {
-            this.createdAt = in.readLong();
-          }
-          break;
+          case 3:
+            if (in.readIndex() != 1) {
+              in.readNull();
+              this.createdAt = null;
+            } else {
+              this.createdAt = in.readLong();
+            }
+            break;
 
-        default:
-          throw new java.io.IOException("Corrupt ResolvingDecoder.");
+          default:
+            throw new java.io.IOException("Corrupt ResolvingDecoder.");
         }
       }
     }

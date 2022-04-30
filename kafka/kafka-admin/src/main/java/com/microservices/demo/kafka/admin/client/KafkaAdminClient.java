@@ -24,7 +24,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class KafkAdminClient {
+public class KafkaAdminClient {
 
   private final KafkaConfigData kafkaConfigData;
   private final AdminClient adminClient;
