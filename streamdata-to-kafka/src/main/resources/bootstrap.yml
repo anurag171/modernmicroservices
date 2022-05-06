@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: stream-data-to-kafka
+  profiles:
+      active: stream_data_to_kafka
+  cloud:
+    config:
+      name: stream-data-to-kafka,config-client
+      uri:
+        - http://localhost:8888
