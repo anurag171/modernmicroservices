@@ -6,7 +6,7 @@ spring:
       server:
         git:
           username: '{cipher}4c9559ec2a3fc18277414c3849c946e6f88263ef1a69469425ea3e54746dffcdf40d5bbf3a99a87d52cd4d22f8c916dc'
-          password: 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
+          password: '{cipher}71d85d0d0b90afbf09819cbf01bcb757455c4b17b8f174176dbb3c98fd933a9e19efbc4270af01b1462814551b9b4924a3b7524b48d719ade5d0ccacbf43e8d4'
           uri: https://github.com/anurag171/spring-cloud-config-server-repository
           default-label: main
           clone-on-start: true
