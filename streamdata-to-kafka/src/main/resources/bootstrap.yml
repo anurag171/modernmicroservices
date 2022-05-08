@@ -8,5 +8,8 @@ spring:
       name: stream-data-to-kafka,config-client
       uri:
         - http://localhost:8888
-      username: spring_cloud_user
-      password: springCloud_Pwd!
+      username: ENC(fX6S2kJ96C3CmBglGu7IvnznAx2GEKGtgGhwC3/CkI5e9SsiFLuV1/2R06/8+DIZLNcb97PRMObKVs6LJKksIw==)
+      password: ENC(SDmTH82yuMAHttCaV9tn4ckvYKwNOCtPplJn5IeH5MSDtAWk7FxxpfKInqQtmQgpXBAV9wISZxah2RzZ4/ZLYw==)
+jasypt:
+  encryptor:
+    password: modernmicroservices@kafkamongospringboot

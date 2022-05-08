@@ -3,3 +3,8 @@ server:
 spring:
   profiles:
     active: stream_data_to_kafka
+twitter-oauth:
+  consumer-key: ENC(LNTsgPV+BHuqSoHneCjR9EedZ8TT7uqF45OELHAf8llPRmpStQ1jxLr2X5FX/H/ZguIpCYpW7oA8PT7DD3awXA==)
+  consumer-secret: ENC(AtC8TaeEvHoIWBaZxPuTSK8dqbeO8olR+/I+KQPMJ+WtQ+aKJsh7aGYxZ8gEApmWnJI4JMllo8k/dxdJdv0anmFav3obwz0jQl/Kt+zwTyEn58RXpRdNwbbdzcmT1o+K)
+  access-token: ENC(P94mE5JtbJJZPC5H5qP2oCTx0U+eDDj55RD/ii38S2ZBZaBUNRtiqe+wEK+CLXBJzSDY/F4UnHlzMdd5hYNCKCV6Jh80nv4hrtR1b997s1dgcb2kUmWUOIDiebUriq0z)
+  access-token-secret: ENC(fCOSgQy0x7R3j4QzJMAlM0oEAfpv7M8J6aFmVRCW7+/WCnEdl7VejLM6BIWlDpvqOSDwAeseX+4TcgTKwokTvUNO/OqykY4wcqvCrFTWAUA=)
