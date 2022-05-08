@@ -1,6 +1,7 @@
 package com.microservices.demo.stream.data.to.kafka.runner.impl;
 
 import com.microservices.demo.config.StreamDataToKafkaConfig;
+import com.microservices.demo.config.TwitterConfigData;
 import com.microservices.demo.stream.data.to.kafka.listener.StreamDataStatusListener;
 import com.microservices.demo.stream.data.to.kafka.runner.StreamRunner;
 import javax.annotation.PreDestroy;
@@ -12,6 +13,9 @@ import twitter4j.FilterQuery;
 import twitter4j.TwitterException;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
+import twitter4j.auth.AccessToken;
+import twitter4j.conf.Configuration;
+import twitter4j.conf.ConfigurationBuilder;
 
 @Component
 @RequiredArgsConstructor
@@ -21,13 +25,28 @@ public class TwitterStreamDataRunner implements StreamRunner {
 
   private final StreamDataToKafkaConfig streamDataToKafkaConfig;
   private final StreamDataStatusListener streamDataStatusListener;
+  private final TwitterConfigData twitterConfigData;
 
   private TwitterStream twitterStream;
 
   @Override
   public void start() throws TwitterException {
 
+    ConfigurationBuilder cb = new ConfigurationBuilder();
+    cb.setDebugEnabled(true)
+        .setOAuthConsumerKey(twitterConfigData.getConsumerKey())
+        .setOAuthConsumerSecret(twitterConfigData.getConsumerSecret())
+        .setOAuthAccessToken(twitterConfigData.getAccessToken())
+        .setOAuthAccessTokenSecret(twitterConfigData.getAccessTokenSecret());
+
+    Configuration configuration = cb.build();
+    log.info(configuration.toString());
+
+
     twitterStream = new TwitterStreamFactory().getInstance();
+    twitterStream.setOAuthConsumer(configuration.getOAuthConsumerKey(),configuration.getOAuthConsumerSecret());
+    twitterStream.setOAuthAccessToken(new AccessToken(configuration.getOAuthAccessToken(),
+        configuration.getOAuthAccessTokenSecret()));
     twitterStream.addListener(streamDataStatusListener);
     addFilter();
 
