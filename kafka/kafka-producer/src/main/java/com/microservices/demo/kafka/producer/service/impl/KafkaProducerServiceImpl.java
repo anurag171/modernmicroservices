@@ -17,7 +17,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 @RequiredArgsConstructor
 public class KafkaProducerServiceImpl implements KafkaProducerService<Long, TwitterAvroModel> {
 
-  private KafkaTemplate<Long, TwitterAvroModel> kafkaTemplate;
+  private final KafkaTemplate<Long, TwitterAvroModel> kafkaTemplate;
 
   @Override
   public void send(String topic, Long key, TwitterAvroModel message) {

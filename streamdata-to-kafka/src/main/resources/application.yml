@@ -1,5 +1,3 @@
-server:
-  port: 8070
 spring:
   profiles:
     active: stream_data_to_kafka
@@ -8,3 +6,6 @@ twitter-oauth:
   consumer-secret: '{cipher}1e1d35fb934e9f59daff5a050a61f98a448e84dc18250df1714831c631424138484167fb937de18b25695e66a17a120e5ed55d8ad8808ecf4f664893a89d5286c86ad25cca5d339009979388a910f778'
   access-token: '{cipher}003c24f41e383625b304e7deb498bc81a091cddf5f45cfa139cdbc57e24f46e4ea71f81cc7ff8a5fe9fc380acc66abde3191cff1fa194834990d5112276981dd783a3c1a95d5161a63877693bbdd6c7c'
   access-token-secret: '{cipher}dfd4abd63c2f6a427483ebca2e16dad10fe7a4d9b0dc1860fb6812d09b6d4081a9af0e23455672df62f3405fa6942d0c60fdce57b9403211a1388732cb4be56d'
+logging:
+  level:
+    root: error
