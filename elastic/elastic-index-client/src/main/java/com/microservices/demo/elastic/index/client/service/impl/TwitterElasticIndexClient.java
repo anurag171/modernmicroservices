@@ -7,6 +7,7 @@ import com.microservices.demo.elastic.model.impl.TwitterIndexModel;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "elastic-config.is-repository",havingValue = "false",matchIfMissing = false)
 public class TwitterElasticIndexClient implements ElasticIndexClient<TwitterIndexModel> {
 
   private final ElasticConfigData elasticConfigData;
