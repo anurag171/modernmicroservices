@@ -2,11 +2,15 @@ package com.microservices.demo.kafka.to.elastic.service.consumer.impl;
 
 import com.microservices.demo.config.KafkaConfigData;
 import com.microservices.demo.config.KafkaConsumerConfigData;
+import com.microservices.demo.elastic.index.client.service.ElasticIndexClient;
+import com.microservices.demo.elastic.model.impl.TwitterIndexModel;
 import com.microservices.demo.kafka.admin.client.KafkaAdminClient;
 import com.microservices.demo.kafka.avro.model.TwitterAvroModel;
 import com.microservices.demo.kafka.to.elastic.service.consumer.KafkaConsumer;
+import com.microservices.demo.kafka.to.elastic.service.transformer.AvroToElasticModelTransformer;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -22,6 +26,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TwitterKafkaConsumer implements KafkaConsumer<Long, TwitterAvroModel> {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterKafkaConsumer.class);
@@ -32,6 +37,8 @@ public class TwitterKafkaConsumer implements KafkaConsumer<Long, TwitterAvroMode
 
     private final KafkaConfigData kafkaConfigData;
     private final KafkaConsumerConfigData kafkaConsumerConfigData;
+    private final AvroToElasticModelTransformer avroToElasticModelTransformer;
+    private final ElasticIndexClient<TwitterIndexModel> twitterIndexModelElasticIndexClient;
 
 
 
@@ -57,5 +64,8 @@ public class TwitterKafkaConsumer implements KafkaConsumer<Long, TwitterAvroMode
                 partitions.toString(),
                 offsets.toString(),
                 Thread.currentThread().getId());
+        List<TwitterIndexModel> twitterIndexModelList = avroToElasticModelTransformer.getElasticModels(messages);
+        List<String> documentIds = twitterIndexModelElasticIndexClient.save(twitterIndexModelList);
+        log.info("The following ids [{}] saved to elastic search",documentIds);
     }
 }
