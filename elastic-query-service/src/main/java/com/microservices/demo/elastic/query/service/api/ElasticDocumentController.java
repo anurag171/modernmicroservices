@@ -5,6 +5,8 @@ import com.microservices.demo.elastic.query.service.model.ElasticQueryServiceReq
 import com.microservices.demo.elastic.query.service.model.ElasticQueryServiceResponseModel;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +37,7 @@ public class ElasticDocumentController {
 
   @GetMapping("/{id}")
   public @ResponseBody ResponseEntity<ElasticQueryServiceResponseModel>
-        getDocumentById(@PathVariable("id") String id){
+        getDocumentById(@PathVariable("id") @NotEmpty String id){
     ElasticQueryServiceResponseModel response = elasticQueryService.getDocumentById(id);
     log.info(MESSAGE,response);
     return ResponseEntity.ok(response);
@@ -43,7 +45,7 @@ public class ElasticDocumentController {
 
   @PostMapping("/get-document-by-text")
   public @ResponseBody ResponseEntity<List<ElasticQueryServiceResponseModel>>
-  getDocumentsByText(@RequestBody ElasticQueryServiceRequestModel elasticQueryServiceRequestModel){
+  getDocumentsByText(@RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel){
     List<ElasticQueryServiceResponseModel> response = elasticQueryService.getDocumentByText(
                                                           elasticQueryServiceRequestModel.getText());
     log.info(MESSAGE,response);

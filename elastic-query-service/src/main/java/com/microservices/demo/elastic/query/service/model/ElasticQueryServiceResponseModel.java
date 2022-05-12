@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ElasticQueryServiceResponseModel {
+public class ElasticQueryServiceResponseModel
+    extends RepresentationModel<ElasticQueryServiceResponseModel> {
   private String id;
   private String text;
   private Long userId;
