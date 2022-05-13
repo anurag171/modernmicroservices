@@ -3,8 +3,10 @@ package com.microservices.demo.elastic.query.service.api;
 import com.microservices.demo.elastic.query.service.business.ElasticQueryService;
 import com.microservices.demo.elastic.query.service.model.ElasticQueryServiceRequestModel;
 import com.microservices.demo.elastic.query.service.model.ElasticQueryServiceResponseModel;
+import com.microservices.demo.elastic.query.service.model.ElasticQueryServiceResponseModelV2;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
@@ -28,14 +30,14 @@ public class ElasticDocumentController {
 
   private static final  String MESSAGE = "Elastic search returned {} of documents";
 
-  @GetMapping("/")
+  @GetMapping("/v1")
   public @ResponseBody ResponseEntity<List<ElasticQueryServiceResponseModel>> getAllDocuments(){
     List<ElasticQueryServiceResponseModel> response = elasticQueryService.getAllDocuments();
     log.info(MESSAGE,response.size());
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("/v1/{id}")
   public @ResponseBody ResponseEntity<ElasticQueryServiceResponseModel>
         getDocumentById(@PathVariable("id") @NotEmpty String id){
     ElasticQueryServiceResponseModel response = elasticQueryService.getDocumentById(id);
@@ -43,12 +45,40 @@ public class ElasticDocumentController {
     return ResponseEntity.ok(response);
   }
 
-  @PostMapping("/get-document-by-text")
+  @GetMapping("/v2/{id}")
+  public @ResponseBody ResponseEntity<ElasticQueryServiceResponseModelV2>
+  getDocumentByIdV2(@PathVariable("id") @NotEmpty String id){
+    ElasticQueryServiceResponseModelV2 response = getV2Model(elasticQueryService.getDocumentById(id));
+    log.info(MESSAGE,response);
+    return ResponseEntity.ok(response);
+  }
+
+  @PostMapping("/v1/get-document-by-text")
   public @ResponseBody ResponseEntity<List<ElasticQueryServiceResponseModel>>
   getDocumentsByText(@RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel){
     List<ElasticQueryServiceResponseModel> response = elasticQueryService.getDocumentByText(
                                                           elasticQueryServiceRequestModel.getText());
     log.info(MESSAGE,response);
     return ResponseEntity.ok(response);
+  }
+
+  @PostMapping("/v2/get-document-by-text")
+  public @ResponseBody ResponseEntity<List<ElasticQueryServiceResponseModelV2>>
+  getDocumentsByTextV2(@RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel){
+    List<ElasticQueryServiceResponseModelV2> responseV2 = elasticQueryService.getDocumentByText(
+                                                          elasticQueryServiceRequestModel.getText())
+        .stream().map(this::getV2Model).collect(Collectors.toList());
+    log.info(MESSAGE,responseV2);
+    return ResponseEntity.ok(responseV2);
+  }
+
+  private ElasticQueryServiceResponseModelV2 getV2Model(ElasticQueryServiceResponseModel responseModel ){
+    ElasticQueryServiceResponseModelV2 responseModelV2 = ElasticQueryServiceResponseModelV2.builder()
+                                      .id(Long.parseLong(responseModel.getId()))
+        .text(responseModel.getText()).userId(responseModel.getUserId())
+        .createdAt(responseModel.getCreatedAt())
+        .build();
+    responseModelV2.add(responseModel.getLinks());
+    return responseModelV2;
   }
 }
