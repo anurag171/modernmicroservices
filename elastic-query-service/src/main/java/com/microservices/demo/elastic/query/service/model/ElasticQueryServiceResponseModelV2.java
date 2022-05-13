@@ -13,9 +13,9 @@ import org.springframework.hateoas.RepresentationModel;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = false)
-public class ElasticQueryServiceResponseModel
-    extends RepresentationModel<ElasticQueryServiceResponseModel> {
-  private String id;
+public class ElasticQueryServiceResponseModelV2
+    extends RepresentationModel<ElasticQueryServiceResponseModelV2> {
+  private Long id;
   private String text;
   private String textV2;
   private Long userId;
