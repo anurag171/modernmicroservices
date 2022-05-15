@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -43,20 +42,21 @@ public class TwitterElasticQueryWebClient implements ElasticQueryWebClient {
     return builder.build()
         .method(HttpMethod.valueOf(elasticQueryWebClientConfigData.getQueryByText().getMethod()))
         .uri(elasticQueryWebClientConfigData.getQueryByText().getUri())
-        .accept(MediaType.valueOf(elasticQueryWebClientConfigData.getQueryByText().getAccept()))
+        .accept(MediaType.valueOf("application/vnd.api.v1+json"))
+        .contentType(MediaType.APPLICATION_JSON)
         .body(BodyInserters.fromPublisher(Mono.just(requestModel),createParametrizedTypeReference()))
         .retrieve()
         .onStatus(httpStatus -> httpStatus.equals(HttpStatus.UNAUTHORIZED),
               clientResponse -> Mono.just(new BadCredentialsException("Not Authenticated")))
-        .onStatus(httpStatus -> httpStatus.is4xxClientError(),
+        .onStatus(HttpStatus::is4xxClientError,
             clientResponse -> Mono.just(new ElasticQueryWebClientException(clientResponse.statusCode().getReasonPhrase())))
-        .onStatus(httpStatus -> httpStatus.is5xxServerError(),
+        .onStatus(HttpStatus::is5xxServerError,
             clientResponse -> Mono.just(new Exception(clientResponse.statusCode().getReasonPhrase())));
   }
 
 
   private <T> ParameterizedTypeReference<T>  createParametrizedTypeReference() {
-    return new ParameterizedTypeReference<T>() {
+    return new ParameterizedTypeReference<>() {
     };
   }
 

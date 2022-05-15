@@ -31,3 +31,7 @@ elastic-query-web-client:
       content-type: 'application/vndi.api.v1+json'
       accept-type: 'application/vndi.api.v1+json'
       base-url: 'http://localhost:7093/elastic-query-service/documents/'
+    query-by-text:
+      method: POST
+      uri: '/get-document-by-text'
+      accept: ${elastic-query-web-client.accept-type}
