@@ -5,7 +5,6 @@ import com.microservices.demo.config.UserConfigData;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
-import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +16,17 @@ import reactor.netty.http.client.HttpClient;
 import reactor.netty.tcp.TcpClient;
 
 @Configuration
-@RequiredArgsConstructor
 public class WebClientConfig {
 
   private final ElasticQueryWebClientConfigData.WebClient elasticQueryWebClientConfigData;
   private final UserConfigData userConfigData;
+
+  public WebClientConfig(
+      ElasticQueryWebClientConfigData elasticQueryWebClientConfigData,
+      UserConfigData userConfigData) {
+    this.elasticQueryWebClientConfigData = elasticQueryWebClientConfigData.getWebClient();
+    this.userConfigData = userConfigData;
+  }
 
   @LoadBalanced
   @Bean("webClientBuilder")

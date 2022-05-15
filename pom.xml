@@ -249,7 +249,7 @@
         <artifactId>springdoc-openapi-ui</artifactId>
         <version>${springdoc-openapi.version}</version>
       </dependency>
-      <dependency>
+     <!-- <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-thymeleaf</artifactId>
         <version>${spring-boot.version}</version>
@@ -257,8 +257,7 @@
       <dependency>
         <groupId>org.thymeleaf.extras</groupId>
         <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-        <version>${thymeleaf-extras.version}</version>
-      </dependency>
+      </dependency>-->
     </dependencies>
   </dependencyManagement>
   <build>
