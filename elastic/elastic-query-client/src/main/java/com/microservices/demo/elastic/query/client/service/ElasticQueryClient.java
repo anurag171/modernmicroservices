@@ -11,4 +11,5 @@ public interface ElasticQueryClient<T extends IndexModel> {
 
   List<T> getAllIndexModels();
 
+  String deleteAll(String index);
 }

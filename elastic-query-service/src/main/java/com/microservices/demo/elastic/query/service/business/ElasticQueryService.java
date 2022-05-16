@@ -8,5 +8,5 @@ public interface ElasticQueryService {
   ElasticQueryServiceResponseModel getDocumentById(String id);
   List<ElasticQueryServiceResponseModel> getDocumentByText(String text);
   List<ElasticQueryServiceResponseModel> getAllDocuments();
-
+  String deleteAll(String index);
 }

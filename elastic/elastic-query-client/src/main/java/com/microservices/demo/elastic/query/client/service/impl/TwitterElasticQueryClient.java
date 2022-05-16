@@ -52,6 +52,12 @@ public class TwitterElasticQueryClient implements ElasticQueryClient<TwitterInde
     return search(query, "No document found ");
   }
 
+  @Override
+  public String deleteAll(String index) {
+    elasticsearchOperations.delete(index,TwitterIndexModel.class);
+    return "done";
+  }
+
   private List<TwitterIndexModel> search(Query query, String exceptionMessage) {
     SearchHits<TwitterIndexModel> modelSearchHits = elasticsearchOperations.search(query,TwitterIndexModel.class,IndexCoordinates.of(elasticConfigData.getIndexName()));
     if(modelSearchHits.isEmpty()){

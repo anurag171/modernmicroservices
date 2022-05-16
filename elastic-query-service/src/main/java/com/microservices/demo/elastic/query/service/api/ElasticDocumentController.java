@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -148,6 +149,15 @@ public class ElasticDocumentController {
     List<ElasticQueryServiceResponseModelV2> response = elasticQueryService.getDocumentByText(
             elasticQueryServiceRequestModel.getText()).stream().map(this::getModelV2)
         .collect(Collectors.toList());
+    log.info(MESSAGE, response);
+    return ResponseEntity.ok(response);
+  }
+
+  @DeleteMapping(value = "/get-document-by-text", produces = "application/vnd.api.v2+json")
+  public @ResponseBody
+  ResponseEntity<String>
+  flushDocumentsV2() {
+    String response = elasticQueryService.deleteAll("");
     log.info(MESSAGE, response);
     return ResponseEntity.ok(response);
   }

@@ -1,5 +1,6 @@
 package com.microservices.demo.config;
 
+import java.util.List;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 public class ElasticQueryWebClientConfigData {
   private WebClient webClient;
   private Query queryByText;
+  private Instance instance;
+
 
   @Data
   public static class Query{
@@ -27,5 +30,14 @@ public class ElasticQueryWebClientConfigData {
     private String contentType;
     private String acceptType;
     private String baseUrl;
+    private String serviceId;
+    private List<Instance> instances;
+  }
+
+  @Data
+  public static class Instance{
+    private String id;
+    private String host;
+    private int port;
   }
 }

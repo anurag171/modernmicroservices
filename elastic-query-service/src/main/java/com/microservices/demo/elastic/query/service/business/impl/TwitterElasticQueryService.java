@@ -32,4 +32,9 @@ public class TwitterElasticQueryService implements ElasticQueryService {
   public List<ElasticQueryServiceResponseModel> getAllDocuments() {
     return responseModelTransformer.toModels(elasticQueryClient.getAllIndexModels());
   }
+
+  @Override
+  public String deleteAll(String index) {
+    return elasticQueryClient.deleteAll(index);
+  }
 }

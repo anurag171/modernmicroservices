@@ -39,4 +39,10 @@ public class TwitterElasticRepositoryQueryClient implements ElasticQueryClient<T
   public List<TwitterIndexModel> getAllIndexModels() {
     return CollectionUtil.getInstance().getListFromIterable(twitterElasticSearchQueryRepository.findAll());
   }
+
+  @Override
+  public String deleteAll(String index) {
+    twitterElasticSearchQueryRepository.deleteAll();
+    return "done";
+  }
 }

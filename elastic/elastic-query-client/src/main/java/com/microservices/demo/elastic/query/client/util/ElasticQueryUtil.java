@@ -2,9 +2,12 @@ package com.microservices.demo.elastic.query.client.util;
 
 import com.microservices.demo.elastic.model.IndexModel;
 import java.util.Collections;
+import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+
+
 import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.stereotype.Component;
 
@@ -31,4 +34,9 @@ public class ElasticQueryUtil<T extends IndexModel> {
         .build();
   }
 
+  public void deleteAll(String indexName) {
+    DeleteRequest deleteRequest = new DeleteRequest(indexName);
+
+
+  }
 }
