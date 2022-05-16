@@ -4,9 +4,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import com.microservices.demo.elastic.model.impl.TwitterIndexModel;
+import com.microservices.demo.elastic.query.common.model.ElasticQueryServiceResponseModel;
+import com.microservices.demo.elastic.query.common.transformer.ElasticToResponseModelTransformer;
 import com.microservices.demo.elastic.query.service.api.ElasticDocumentController;
-import com.microservices.demo.elastic.query.service.model.ElasticQueryServiceResponseModel;
-import com.microservices.demo.elastic.query.service.transformer.ElasticToResponseModelTransformer;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;

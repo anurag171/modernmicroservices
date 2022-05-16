@@ -18,6 +18,11 @@ public class ElasticQueryServiceInstanceListSupplierConfig implements ServiceIns
 
   private final ElasticQueryWebClientConfigData.WebClient webClientConfig;
 
+  public ElasticQueryServiceInstanceListSupplierConfig(
+      ElasticQueryWebClientConfigData queryWebClientConfigData) {
+    this.webClientConfig = queryWebClientConfigData.getWebClient();
+  }
+
   @Override
   public String getServiceId() {
     return webClientConfig.getServiceId();

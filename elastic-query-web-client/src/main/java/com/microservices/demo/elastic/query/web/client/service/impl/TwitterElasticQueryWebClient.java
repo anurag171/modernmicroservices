@@ -1,11 +1,10 @@
 package com.microservices.demo.elastic.query.web.client.service.impl;
 
 import com.microservices.demo.config.ElasticQueryWebClientConfigData;
+import com.microservices.demo.elastic.query.web.client.common.model.ElasticQueryWebClientRequestModel;
+import com.microservices.demo.elastic.query.web.client.common.model.ElasticQueryWebClientResponseModel;
 import com.microservices.demo.elastic.query.web.client.exception.ElasticQueryWebClientException;
-import com.microservices.demo.elastic.query.web.client.model.ElasticQueryWebClientRequestModel;
-import com.microservices.demo.elastic.query.web.client.model.ElasticQueryWebClientResponseModel;
 import com.microservices.demo.elastic.query.web.client.service.ElasticQueryWebClient;
-import java.lang.reflect.Type;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +41,7 @@ public class TwitterElasticQueryWebClient implements ElasticQueryWebClient {
     return builder.build()
         .method(HttpMethod.valueOf(elasticQueryWebClientConfigData.getQueryByText().getMethod()))
         .uri(elasticQueryWebClientConfigData.getQueryByText().getUri())
-        .accept(MediaType.valueOf("application/vnd.api.v1+json"))
+        .accept(MediaType.valueOf(elasticQueryWebClientConfigData.getWebClient().getAcceptType()))
         .contentType(MediaType.APPLICATION_JSON)
         .body(BodyInserters.fromPublisher(Mono.just(requestModel),createParametrizedTypeReference()))
         .retrieve()

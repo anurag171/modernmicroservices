@@ -1,7 +1,7 @@
-package com.microservices.demo.elastic.query.service.transformer;
+package com.microservices.demo.elastic.query.common.transformer;
 
 import com.microservices.demo.elastic.model.impl.TwitterIndexModel;
-import com.microservices.demo.elastic.query.service.model.ElasticQueryServiceResponseModel;
+import com.microservices.demo.elastic.query.common.model.ElasticQueryServiceResponseModel;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
