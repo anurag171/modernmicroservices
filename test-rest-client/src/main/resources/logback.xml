@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="DEV_HOME" value="./test-rest-client/logs"/>
+    <property name="APP_NAME" value="test-rest-client"/>
+
+    <include resource="logback-common.xml"/>
+
+</configuration>

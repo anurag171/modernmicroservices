@@ -27,6 +27,7 @@
     <module>elastic-query-web-client-common</module>
     <module>reactive-elastic-query-web-client</module>
     <module>reactive-elastic-query-service</module>
+    <module>test-rest-client</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -264,15 +265,6 @@
         <artifactId>springdoc-openapi-ui</artifactId>
         <version>${springdoc-openapi.version}</version>
       </dependency>
-     <!-- <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        <version>${spring-boot.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.thymeleaf.extras</groupId>
-        <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-      </dependency>-->
       <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
