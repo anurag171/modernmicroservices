@@ -1,7 +1,6 @@
 package com.microservices.demo.elastic.query.web.client.config;
 
 import com.microservices.demo.config.ElasticQueryWebClientConfigData;
-import com.microservices.demo.config.UserConfigData;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
@@ -25,17 +24,15 @@ import reactor.netty.tcp.TcpClient;
 public class WebClientConfig {
 
   private final ElasticQueryWebClientConfigData.WebClient elasticQueryWebClientConfigData;
-  private final UserConfigData userConfigData;
 
-  @Value("${default.registrationId}")
+  @Value("${security.default-client-registration-id}")
   private String registrationId;
 
 
   public WebClientConfig(
-      ElasticQueryWebClientConfigData elasticQueryWebClientConfigData,
-      UserConfigData userConfigData) {
+      ElasticQueryWebClientConfigData elasticQueryWebClientConfigData
+      ) {
     this.elasticQueryWebClientConfigData = elasticQueryWebClientConfigData.getWebClient();
-    this.userConfigData = userConfigData;
   }
 
   @LoadBalanced
