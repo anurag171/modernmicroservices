@@ -72,6 +72,7 @@ public class QueryServicePermissionEvaluator implements PermissionEvaluator {
         TwitterQueryUser twitterQueryUser = (TwitterQueryUser) authentication.getPrincipal();
         for (ElasticQueryServiceResponseModel responseModel : responseBody) {
             PermissionType userPermission = twitterQueryUser.getPermissions().get(responseModel.getId());
+            //PermissionType userPermission = twitterQueryUser.getPermissions().get("1");
             if (!hasPermission((String) permission, userPermission)) {
                 return false;
             }

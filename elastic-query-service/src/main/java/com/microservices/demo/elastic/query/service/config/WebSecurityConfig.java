@@ -65,6 +65,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             OAuth2TokenValidator<Jwt> audienceValidator){
     NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder) JwtDecoders
         .fromOidcIssuerLocation(oAuth2ResourceServerProperties.getJwt().getIssuerUri());
+    /*NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(oAuth2ResourceServerProperties.getJwt().getJwkSetUri()).jwsAlgorithm(
+        SignatureAlgorithm.RS512).build();*/
     OAuth2TokenValidator<Jwt>  withIssuer =
         JwtValidators.createDefaultWithIssuer(oAuth2ResourceServerProperties.getJwt().getIssuerUri());
     OAuth2TokenValidator<Jwt> withAudience =

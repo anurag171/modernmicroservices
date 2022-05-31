@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class AudienceValidator implements OAuth2TokenValidator<Jwt> {
 
-  private ElasticQueryServiceConfigData elasticQueryServiceConfigData;
+  private final ElasticQueryServiceConfigData elasticQueryServiceConfigData;
 
   @Override
   public OAuth2TokenValidatorResult validate(Jwt token) {

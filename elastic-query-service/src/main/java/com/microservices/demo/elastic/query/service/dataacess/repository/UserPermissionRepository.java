@@ -10,9 +10,9 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserPermissionRepository extends JpaRepository<UserPermission, UUID> {
 
-  @Query(nativeQuery = true,value = "SELECT p.user_permission_id,u.username,d.document_id,p.permission_type "
+  @Query(nativeQuery = true,value = "SELECT p.user_permission_id as id,u.username,d.document_id,p.permission_type "
   + " FROM user_permissions p ,users u , documents d WHERE u.id = p.user_id "
-      + " and p.document_id= d.document_id and u.username=:username")
+      + " and p.document_id= d.id and u.username=:username")
   Optional<List<UserPermission>> findPermissionsByUsername(@Param("username") String username);
 
 }
