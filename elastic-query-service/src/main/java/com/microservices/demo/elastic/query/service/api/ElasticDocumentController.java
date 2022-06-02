@@ -3,7 +3,9 @@ package com.microservices.demo.elastic.query.service.api;
 import com.microservices.demo.elastic.query.common.model.ElasticQueryServiceRequestModel;
 import com.microservices.demo.elastic.query.common.model.ElasticQueryServiceResponseModel;
 import com.microservices.demo.elastic.query.service.business.ElasticQueryService;
+import com.microservices.demo.elastic.query.service.model.ElasticQueryServiceAnalysticsResponseModel;
 import com.microservices.demo.elastic.query.service.model.ElasticQueryServiceResponseModelV2;
+import com.microservices.demo.elastic.query.service.security.TwitterQueryUser;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,6 +21,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -135,11 +140,14 @@ public class ElasticDocumentController {
   })
   @PostMapping("/get-document-by-text")
   public @ResponseBody
-  ResponseEntity<List<ElasticQueryServiceResponseModel>>
+  ResponseEntity<ElasticQueryServiceAnalysticsResponseModel>
   getDocumentsByText(
-      @RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel) {
-    List<ElasticQueryServiceResponseModel> response = elasticQueryService.getDocumentByText(
-        elasticQueryServiceRequestModel.getText());
+      @RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel,
+      @AuthenticationPrincipal TwitterQueryUser principal,
+      @RegisteredOAuth2AuthorizedClient("keycloak")OAuth2AuthorizedClient client) {
+    log.info("User {} querying documents for text {}",principal.getUsername(),elasticQueryServiceRequestModel.getText());
+    ElasticQueryServiceAnalysticsResponseModel response = elasticQueryService.getDocumentByText(
+        elasticQueryServiceRequestModel.getText(),client.getAccessToken().getTokenValue());
     log.info(MESSAGE, response);
     return ResponseEntity.ok(response);
   }
@@ -154,12 +162,14 @@ public class ElasticDocumentController {
   })
   @PostMapping(value = "/get-document-by-text", produces = "application/vnd.api.v2+json")
   public @ResponseBody
-  ResponseEntity<List<ElasticQueryServiceResponseModelV2>>
+  ResponseEntity<ElasticQueryServiceAnalysticsResponseModel>
   getDocumentsByTextV2(
-      @RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel) {
-    List<ElasticQueryServiceResponseModelV2> response = elasticQueryService.getDocumentByText(
-            elasticQueryServiceRequestModel.getText()).stream().map(this::getModelV2)
-        .collect(Collectors.toList());
+      @RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel,
+      @AuthenticationPrincipal TwitterQueryUser principal,
+      @RegisteredOAuth2AuthorizedClient("keycloak")OAuth2AuthorizedClient client) {
+    log.info("User {} querying documents for text {}",principal.getUsername(),elasticQueryServiceRequestModel.getText());
+    ElasticQueryServiceAnalysticsResponseModel response = elasticQueryService.getDocumentByText(
+            elasticQueryServiceRequestModel.getText(),client.getAccessToken().getTokenValue());
     log.info(MESSAGE, response);
     return ResponseEntity.ok(response);
   }

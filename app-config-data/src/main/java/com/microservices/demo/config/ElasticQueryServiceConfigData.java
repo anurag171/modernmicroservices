@@ -11,4 +11,24 @@ public class ElasticQueryServiceConfigData {
     private String version;
     private Long backPressureDelayMs;
     private String customAudience;
+    private WebClient webClient;
+    private Query queryFromKafkaStateStore;
+
+    @Data
+    public static class WebClient{
+        private int connectTimeoutMs;
+        private int readTimeoutMs;
+        private int writeTimeoutMs;
+        private int maxInMemorySize;
+        private String contentType;
+        private String acceptType;
+        private String queryType;
+    }
+
+    @Data
+    public static class Query{
+        private String method;
+        private String accept;
+        private String uri;
+    }
 }
