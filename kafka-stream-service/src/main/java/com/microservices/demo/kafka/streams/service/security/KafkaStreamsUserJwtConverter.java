@@ -1,5 +1,7 @@
 package com.microservices.demo.kafka.streams.service.security;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 import static com.microservices.demo.kafka.streams.service.Constants.NA;
 
 
+@Slf4j
+@RequiredArgsConstructor
 public class KafkaStreamsUserJwtConverter implements Converter<Jwt, AbstractAuthenticationToken> {
     private static final String REALM_ACCESS_CLAIM = "realm_access";
     private static final String ROLES_CLAIM = "roles";
@@ -28,10 +32,6 @@ public class KafkaStreamsUserJwtConverter implements Converter<Jwt, AbstractAuth
     private static final String SCOPE_SEPARATOR = " ";
 
     private final KafkaStreamsUserDetailsService kafkaStreamsUserDetailsService;
-
-    public KafkaStreamsUserJwtConverter(KafkaStreamsUserDetailsService kafkaStreamsUserDetailsService) {
-        this.kafkaStreamsUserDetailsService = kafkaStreamsUserDetailsService;
-    }
 
     @Override
     public AbstractAuthenticationToken convert(Jwt jwt) {

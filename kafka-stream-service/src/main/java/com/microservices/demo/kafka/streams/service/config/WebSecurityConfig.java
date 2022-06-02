@@ -2,6 +2,7 @@ package com.microservices.demo.kafka.streams.service.config;
 
 import com.microservices.demo.kafka.streams.service.security.KafkaStreamsUserDetailsService;
 import com.microservices.demo.kafka.streams.service.security.KafkaStreamsUserJwtConverter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
@@ -20,6 +21,7 @@ import org.springframework.security.oauth2.jwt.*;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final KafkaStreamsUserDetailsService kafkaStreamsUserDetailsService;
@@ -29,11 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${security.paths-to-ignore}")
     private String[] pathsToIgnore;
 
-    public WebSecurityConfig(KafkaStreamsUserDetailsService kafkaStreamsUserDetailsService,
-                             OAuth2ResourceServerProperties oAuth2ResourceServerProperties) {
-        this.oAuth2ResourceServerProperties = oAuth2ResourceServerProperties;
-        this.kafkaStreamsUserDetailsService = kafkaStreamsUserDetailsService;
-    }
+
 
     @Override
     public void configure(HttpSecurity http) throws Exception {

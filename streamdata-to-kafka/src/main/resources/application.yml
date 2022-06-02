@@ -8,4 +8,4 @@ twitter-oauth:
   access-token-secret: '{cipher}dfd4abd63c2f6a427483ebca2e16dad10fe7a4d9b0dc1860fb6812d09b6d4081a9af0e23455672df62f3405fa6942d0c60fdce57b9403211a1388732cb4be56d'
 logging:
   level:
-    root: error
+    root: info
