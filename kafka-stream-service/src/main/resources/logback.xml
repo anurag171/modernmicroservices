@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="DEV_HOME" value="./kafka-stream-service/logs"/>
+    <property name="APP_NAME" value="kafka-stream-service"/>
+
+    <include resource="logback-common.xml"/>
+</configuration>
