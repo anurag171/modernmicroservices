@@ -144,10 +144,10 @@ public class ElasticDocumentController {
   getDocumentsByText(
       @RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel,
       @AuthenticationPrincipal TwitterQueryUser principal,
-      @RegisteredOAuth2AuthorizedClient("keycloak")OAuth2AuthorizedClient client) {
+      @RegisteredOAuth2AuthorizedClient("keycloak")OAuth2AuthorizedClient authorizedClient) {
     log.info("User {} querying documents for text {}",principal.getUsername(),elasticQueryServiceRequestModel.getText());
     ElasticQueryServiceAnalysticsResponseModel response = elasticQueryService.getDocumentByText(
-        elasticQueryServiceRequestModel.getText(),client.getAccessToken().getTokenValue());
+        elasticQueryServiceRequestModel.getText(),authorizedClient.getAccessToken().getTokenValue());
     log.info(MESSAGE, response);
     return ResponseEntity.ok(response);
   }
@@ -166,10 +166,10 @@ public class ElasticDocumentController {
   getDocumentsByTextV2(
       @RequestBody @Valid ElasticQueryServiceRequestModel elasticQueryServiceRequestModel,
       @AuthenticationPrincipal TwitterQueryUser principal,
-      @RegisteredOAuth2AuthorizedClient("keycloak")OAuth2AuthorizedClient client) {
+      @RegisteredOAuth2AuthorizedClient("keycloak") OAuth2AuthorizedClient authorizedClient) {
     log.info("User {} querying documents for text {}",principal.getUsername(),elasticQueryServiceRequestModel.getText());
     ElasticQueryServiceAnalysticsResponseModel response = elasticQueryService.getDocumentByText(
-            elasticQueryServiceRequestModel.getText(),client.getAccessToken().getTokenValue());
+            elasticQueryServiceRequestModel.getText(),authorizedClient.getAccessToken().getTokenValue());
     log.info(MESSAGE, response);
     return ResponseEntity.ok(response);
   }
